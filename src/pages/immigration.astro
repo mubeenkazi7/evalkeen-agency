@@ -1,0 +1,52 @@
+---
+import Base from '../layouts/Base.astro';
+import IndustryHero from '../components/IndustryHero.astro';
+import IndustryBody from '../components/IndustryBody.astro';
+import ContactCTA from '../components/ContactCTA.astro';
+import { site } from '../site.config';
+---
+<Base
+  title="AI lead qualification for immigration consultants | evalkeen"
+  description="Your Meta ads open WhatsApp directly. AI asks your screening questions, flags qualified leads and books consultations, so counsellors only call people worth calling."
+  current="immigration"
+>
+  <IndustryHero
+    eyebrow="For immigration and visa consultants"
+    lead="You pay for every Meta lead."
+    accent="Then your team spends days calling them to find the few worth talking to."
+    sub="Your ads open WhatsApp directly. AI asks your screening questions within minutes, flags the qualified leads and books them a consultation, so your counsellors only call people worth calling."
+    builtFor={['PR and work visa consultants', 'Study-abroad consultants']}
+    video={site.videos.immigration}
+    videoLabel="Immigration demo video"
+    caption="Watch: a Meta ad lead qualified on WhatsApp"
+  />
+  <IndustryBody
+    leaksEyebrow="Where consultancies lose clients"
+    leaksTitle="From ad click to signed file, every gap costs you."
+    leaks={[
+      ['Bulk, unqualified leads from Meta ads that your team must call one by one', 'Ads open WhatsApp directly, and AI qualifies every lead with your questions'],
+      ['Leads called too late go cold', 'Instant first response, 24/7, the moment they click'],
+      ["Counsellors' time spent on people who don't qualify", 'A qualified-only list with a summary per lead'],
+      ['Back-and-forth to schedule consultations', 'Automatic consultation booking'],
+      ['Document collection dragging for weeks', 'Checklists by visa type, reminders and missing-document flags'],
+      ['Constant "any update?" calls', 'Proactive case status updates'],
+      ['Old leads that went cold', 'Lead revival campaigns'],
+    ]}
+    stepsEyebrow="How it works for an applicant"
+    stepsTitle="From ad click to a briefed consultation."
+    steps={[
+      'Someone clicks your Meta ad, and WhatsApp opens with a pre-filled message.',
+      'The assistant asks your screening questions: destination, age, education, work experience, language test, budget, timeline.',
+      'Each lead is logged to your sheet or CRM with a short summary and a qualified or not-yet flag.',
+      'Qualified leads are offered a consultation slot. The rest get a polite follow-up sequence.',
+      'Your counsellor calls only qualified leads, already briefed.',
+    ]}
+    calloutLabel="Compliance"
+    callout="The assistant collects information and books consultations. It never tells an applicant whether they're eligible and never gives immigration advice. Every assessment is made by your licensed consultant."
+  />
+  <ContactCTA
+    title="See how many enquiries you're losing each week."
+    body="A free 30-minute walkthrough of your lead flow, from ad click to signed client."
+    button="Book a free walkthrough"
+  />
+</Base>

@@ -1,0 +1,55 @@
+---
+// Shared body for industry pages: leak table, step-by-step flow and a callout.
+interface Props {
+  leaksEyebrow: string;
+  leaksTitle: string;
+  leaks: [string, string][];
+  stepsEyebrow: string;
+  stepsTitle: string;
+  steps: string[];
+  calloutLabel: string;
+  callout: string;
+}
+const { leaksEyebrow, leaksTitle, leaks, stepsEyebrow, stepsTitle, steps, calloutLabel, callout } = Astro.props;
+const pad = (i: number) => String(i + 1).padStart(2, '0');
+---
+<section class="bg-panel">
+  <div class="container section">
+    <p class="eyebrow">{leaksEyebrow}</p>
+    <h2 class="h2">{leaksTitle}</h2>
+    <div class="leaks mt-lg" role="table" aria-label={leaksEyebrow}>
+      <div class="row head" role="row">
+        <span class="k" role="columnheader">The leak</span>
+        <span class="v" role="columnheader">What we build</span>
+      </div>
+      {leaks.map(([k, v]) => (
+        <div class="row" role="row">
+          <span class="k" role="cell">{k}</span>
+          <span class="v" role="cell">{v}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="container section">
+  <p class="eyebrow">{stepsEyebrow}</p>
+  <h2 class="h2">{stepsTitle}</h2>
+  <ol class="grid-auto ruled mt-lg" style="--min: 210px; gap: 40px 28px">
+    {steps.map((s, i) => (
+      <li>
+        <p class="big-num step" aria-hidden="true">{pad(i)}</p>
+        <p class="step-text">{s}</p>
+      </li>
+    ))}
+  </ol>
+  <div class="callout">
+    <span class="label">{calloutLabel}</span>
+    <p>{callout}</p>
+  </div>
+</section>
+
+<style>
+  .step { font-size: 44px; line-height: 1; margin-bottom: 14px; letter-spacing: -0.02em; }
+  .step-text { color: var(--body-dark); }
+</style>

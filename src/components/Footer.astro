@@ -1,0 +1,32 @@
+---
+import { site, links } from '../site.config';
+const year = new Date().getFullYear();
+const socials = [
+  { label: 'Instagram', href: site.socials.instagram },
+  { label: 'YouTube', href: site.socials.youtube },
+  { label: 'LinkedIn', href: site.socials.linkedin },
+].filter((s) => s.href);
+---
+<footer class="bg-dark">
+  <div class="container foot">
+    <a href="/" class="logo"><span class="square" aria-hidden="true"></span>evalkeen</a>
+    <div class="contact">
+      {site.phone && <a href={links.call}>{site.phone}</a>}
+      {site.email && <a href={links.email}>{site.email}</a>}
+    </div>
+    {socials.length > 0 && (
+      <nav aria-label="Social" class="social">
+        {socials.map((s) => <a href={s.href} target="_blank" rel="noopener">{s.label}</a>)}
+      </nav>
+    )}
+    <span class="copy">© {year} evalkeen</span>
+  </div>
+</footer>
+
+<style>
+  .foot { display: flex; flex-wrap: wrap; gap: 12px 40px; justify-content: space-between; align-items: center; padding-block: 28px; font-size: 14px; color: var(--hairline); }
+  .logo { display: flex; align-items: center; gap: 10px; font-family: var(--display); font-weight: 800; font-size: 20px; color: var(--bg); text-decoration: none; }
+  .contact, .social { display: flex; flex-wrap: wrap; gap: 0 20px; }
+  .foot a:not(.logo) { display: inline-flex; align-items: center; min-height: 44px; color: var(--bg); text-decoration: none; font-weight: 600; }
+  .foot a:hover { color: var(--red-on-dark); }
+</style>

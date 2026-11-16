@@ -1,0 +1,68 @@
+---
+import { links } from '../site.config';
+interface Props { current: 'home' | 'clinics' | 'immigration' }
+const { current } = Astro.props;
+const onHome = current === 'home';
+const anchor = (id: string) => (onHome ? `#${id}` : `/#${id}`);
+---
+<header class="site-header">
+  <div class="container bar">
+    <a href="/" class="logo" aria-label="evalkeen home"><span class="square" aria-hidden="true"></span>evalkeen</a>
+    <nav aria-label="Main" class="nav">
+      <a href={anchor('services')}>Services</a>
+      <div class="dd" data-dd>
+        <button type="button" aria-expanded="false" aria-controls="industries-menu" data-dd-btn>
+          Industries
+          <svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6" /></svg>
+        </button>
+        <div class="dd-menu" id="industries-menu">
+          <a href="/clinics" aria-current={current === 'clinics' ? 'page' : undefined}>Clinics</a>
+          <a href="/immigration" aria-current={current === 'immigration' ? 'page' : undefined}>Immigration and visa consultants</a>
+        </div>
+      </div>
+      <a href={anchor('how')}>How we work</a>
+      <a href={anchor('faq')}>FAQ</a>
+    </nav>
+    <a
+      href={links.book}
+      class="btn btn-dark btn-sm"
+      {...(links.bookExternal ? { target: '_blank', rel: 'noopener' } : {})}
+    >Book a walkthrough</a>
+  </div>
+</header>
+
+<style>
+  .site-header { border-bottom: 1px solid var(--hairline); background: var(--bg); position: relative; z-index: 20; }
+  .bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 32px; padding-block: 14px; }
+  .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); font-family: var(--display); font-weight: 800; font-size: 26px; letter-spacing: -0.03em; min-height: 44px; }
+  .logo .square { width: 12px; height: 12px; }
+  .nav { display: flex; flex-wrap: wrap; align-items: center; gap: 0 28px; font-size: 15px; font-weight: 500; }
+  .nav > a, .dd > button { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; text-decoration: none; }
+  .dd { position: relative; }
+  .dd > button { background: none; border: 0; padding: 0; font: inherit; color: var(--ink); cursor: pointer; }
+  .dd > button:hover { color: var(--red-strong); }
+  .dd-menu { display: none; position: absolute; top: 100%; left: -16px; min-width: 280px; padding: 8px 0; background: var(--bg); border: 1px solid var(--hairline); box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08); }
+  .dd:hover .dd-menu, .dd:focus-within .dd-menu, .dd.open .dd-menu { display: block; }
+  .dd-menu a { display: block; padding: 12px 16px; text-decoration: none; }
+  .dd-menu a:hover { background: var(--panel); }
+  .dd-menu a[aria-current='page'] { color: var(--red-strong); font-weight: 600; }
+  @media (max-width: 640px) {
+    .bar { gap: 8px 12px; }
+    .nav { order: 3; width: 100%; gap: 0 20px; }
+    .dd-menu { left: 0; }
+  }
+</style>
+
+<script>
+  // Tap/click and keyboard support for the Industries dropdown (hover works without JS).
+  document.querySelectorAll<HTMLElement>('[data-dd]').forEach((dd) => {
+    const btn = dd.querySelector<HTMLButtonElement>('[data-dd-btn]')!;
+    const set = (open: boolean) => {
+      dd.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', String(open));
+    };
+    btn.addEventListener('click', () => set(!dd.classList.contains('open')));
+    document.addEventListener('click', (e) => { if (!dd.contains(e.target as Node)) set(false); });
+    dd.addEventListener('keydown', (e) => { if (e.key === 'Escape') { set(false); btn.focus(); } });
+  });
+</script>

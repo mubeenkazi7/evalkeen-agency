@@ -1,0 +1,289 @@
+---
+import Base from '../layouts/Base.astro';
+import DemoVideo from '../components/DemoVideo.astro';
+import ContactCTA from '../components/ContactCTA.astro';
+import { site, links } from '../site.config';
+
+const ext = links.bookExternal ? { target: '_blank', rel: 'noopener' } : {};
+
+const problems = [
+  { t: 'Calls nobody picks up', d: "After hours or when the front desk is busy, most callers who don't get through never call back." },
+  { t: 'Ad leads called too late', d: 'You pay for leads, then your team takes days to call them one by one.' },
+  { t: 'The same questions all day', d: 'Fees, timings, documents, location. Your staff answer them instead of doing their real work.' },
+  { t: 'No follow-up', d: '"I\'ll think about it" leads that nobody ever contacts again.' },
+];
+
+const steps = [
+  { t: 'Map', d: 'A 30-minute walkthrough of how enquiries reach you and what happens after. Free.' },
+  { t: 'Fix the biggest leak', d: 'One focused solution, live in 1–2 weeks.' },
+  { t: 'Expand', d: "Once it's working and measured, we move to the next leak." },
+];
+
+const services = [
+  { title: 'Instant enquiry response', problem: 'Leads from ads, calls and messages wait hours for a reply.', desc: 'An assistant that replies in seconds, answers common questions and asks your qualifying questions, then hands serious leads to your team with a summary.', builds: ['WhatsApp enquiry assistant', 'Lead qualification with your questions', 'Leads logged to Google Sheet or CRM'] },
+  { title: 'Appointment booking and reminders', problem: 'Back-and-forth to fix a slot, then no-shows.', desc: 'Books straight into your schedule, sends reminders and handles reschedules.', builds: ['WhatsApp booking', 'Day-before reminders', 'Reschedule and cancel flows'] },
+  { title: 'Follow-up and lead revival', problem: 'Undecided leads go cold.', desc: "Timely, personal follow-ups for people who didn't book, plus re-engagement of old enquiry lists.", builds: ['Follow-up sequences', 'Old-lead reactivation campaigns', 'Hot-lead alerts to staff'] },
+  { title: 'Missed-call recovery and calling agents', problem: 'Unanswered calls are lost leads.', desc: 'A missed call triggers an instant WhatsApp message. For high call volumes, an AI voice agent handles routine calls.', builds: ['Missed call → WhatsApp', 'After-hours call handling', 'Voice agent (when call volume justifies it)'] },
+  { title: 'Document and information collection', problem: 'Chasing clients for paperwork for weeks.', desc: "Sends the right checklist, collects files, reminds automatically and flags what's missing.", builds: ['Checklists per service type', 'Automatic reminders', 'Missing-document reports'] },
+  { title: 'Reviews and referrals', problem: 'Happy clients who never leave a review.', desc: 'Asks at the right moment, after a good outcome, with a one-tap link.', builds: ['Post-service review requests', 'Referral prompts', 'Feedback capture'] },
+];
+const pad = (i: number) => String(i + 1).padStart(2, '0');
+
+const why = [
+  { t: 'No handoffs', d: 'The team that maps your process is the team that builds it and supports it after launch.' },
+  { t: 'Problem first, tool second', d: 'We pick WhatsApp, calls or email based on where your leads actually drop off.' },
+  { t: 'Weeks, not months', d: 'A first solution live in 1–2 weeks, with results you can measure before we build more.' },
+];
+
+const faqs = [
+  { q: 'Do I need a new WhatsApp number?', a: 'Not necessarily. We set up the WhatsApp Business API on a number you choose and guide you through it.' },
+  { q: "What if the AI can't answer something?", a: 'It hands the conversation to your staff with a summary, so the client never repeats themselves.' },
+  { q: 'Where is my data stored?', a: 'In your own Google Sheet or CRM, not on our servers.' },
+  { q: 'How long does setup take?', a: 'Usually 1–2 weeks for a first solution.' },
+  { q: 'What does it cost?', a: 'It depends on scope: a one-time setup fee plus a monthly fee. We quote after the free walkthrough.' },
+  { q: 'Which languages does it support?', a: 'English.' },
+];
+---
+<Base title="evalkeen — AI that stops enquiries slipping away" current="home">
+  <!-- Hero -->
+  <section class="container hero">
+    <p class="eyebrow">AI for service businesses</p>
+    <h1 class="h1 hero-title">You're losing clients between the first enquiry and the <span class="accent">booked appointment.</span></h1>
+    <p class="lede hero-sub">We find where enquiries slip away — slow replies, missed calls, forgotten follow-ups — and fix them with AI that works on WhatsApp, phone and email.</p>
+    <div class="actions">
+      <a href={links.book} class="btn btn-primary" {...ext}>Get a free 30-minute walkthrough</a>
+      <a href="#demo" class="link-arrow">Watch a 90-second demo →</a>
+    </div>
+    <ul class="trust">
+      <li><span class="square" aria-hidden="true"></span>Set up in days, not months</li>
+      <li><span class="square" aria-hidden="true"></span>Your data stays in your own sheets and CRM</li>
+      <li><span class="square" aria-hidden="true"></span>One team from walkthrough to support</li>
+    </ul>
+  </section>
+
+  <!-- Demo -->
+  <section id="demo" class="bg-dark">
+    <div class="container section">
+      <p class="eyebrow">Demo video</p>
+      <h2 class="h2">Don't take our word for it. Watch it work.</h2>
+      <p class="muted demo-sub">Recorded on a real phone: a lead from a Meta ad, qualified on WhatsApp and booked for a consultation in minutes.</p>
+      <div class="demo-card mt-lg">
+        <div class:list={['demo-video', { wide: site.videos.immigration.vertical === false }]}>
+          <DemoVideo url={site.videos.immigration.url} vertical={site.videos.immigration.vertical !== false} poster={site.videos.immigration.poster} label="Immigration demo video" dark />
+        </div>
+        <div class="demo-text">
+          <p class="eyebrow">Immigration</p>
+          <h3 class="h1 demo-title">Meta ad lead → qualified on WhatsApp</h3>
+          <p class="muted">Someone clicks an ad, WhatsApp opens, and the assistant asks the screening questions and books a consultation.</p>
+          <a href="/clinics#demo" class="link-arrow demo-link">Running a clinic? Watch the clinic demo →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem -->
+  <section class="bg-panel">
+    <div class="container section">
+      <p class="eyebrow">The problem</p>
+      <h2 class="h2">Most businesses don't have a lead problem. They have a response problem.</h2>
+      <div class="grid-auto ruled mt-lg">
+        {problems.map((p, i) => (
+          <div>
+            <p class="num">{pad(i)}</p>
+            <h3 class="h3">{p.t}</h3>
+            <p class="muted card-body">{p.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- How we work -->
+  <section id="how" class="container section">
+    <p class="eyebrow">How we work</p>
+    <h2 class="h2">We diagnose before we build.</h2>
+    <ol class="grid-auto mt-lg" style="--min: 260px">
+      {steps.map((s, i) => (
+        <li>
+          <p class="big-num step-num" aria-hidden="true">{pad(i)}</p>
+          <h3 class="h3 step-title">{s.t}</h3>
+          <p class="muted">{s.d}</p>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <!-- Services index -->
+  <section id="services" class="border-top">
+    <div class="container section services" data-services>
+      <div class="svc-list-wrap">
+        <h2 class="eyebrow svc-heading">What we typically build</h2>
+        <ul class="svc-list">
+          {services.map((s, i) => (
+            <li>
+              <button type="button" class="svc-btn" aria-pressed={i === 0 ? 'true' : 'false'} aria-controls={`svc-${i}`} data-svc={i}>
+                <span class="svc-num">{pad(i)}</span>
+                <span class="svc-title">{s.title}</span>
+                <span class="square svc-mark" aria-hidden="true"></span>
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class="svc-panel" aria-live="polite">
+        {services.map((s, i) => (
+          <div id={`svc-${i}`} hidden={i !== 0} data-panel={i}>
+            <p class="big-num panel-num" aria-hidden="true">{pad(i)}</p>
+            <h3 class="h1 panel-title">{s.title}</h3>
+            <p class="panel-problem">Problem: {s.problem}</p>
+            <p class="muted panel-desc">{s.desc}</p>
+            <div class="panel-builds">
+              <p class="builds-label">Typical builds</p>
+              <ul>
+                {s.builds.map((b) => <li><span class="square" aria-hidden="true"></span>{b}</li>)}
+              </ul>
+            </div>
+            <a href="#demo" class="link-arrow">See how it works →</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Industries -->
+  <section class="container section">
+    <p class="eyebrow">Industries</p>
+    <h2 class="h2">Built for businesses that run on enquiries.</h2>
+    <div class="grid-auto mt-lg" style="--min: 300px; gap: 24px">
+      <a href="/clinics" class="industry">
+        <span class="h1 industry-title">Clinics</span>
+        <span class="muted">Fewer missed appointments, fuller schedules.</span>
+        <span class="link-arrow">See how it works for clinics →</span>
+      </a>
+      <a href="/immigration" class="industry">
+        <span class="h1 industry-title">Immigration and visa consultants</span>
+        <span class="muted">Faster replies, better-qualified consultations.</span>
+        <span class="link-arrow">See how it works for consultants →</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Why evalkeen -->
+  <section class="border-top">
+    <div class="container section">
+      <p class="eyebrow">Why evalkeen</p>
+      <h2 class="h2">One team, from first walkthrough to go-live.</h2>
+      <div class="grid-auto ruled mt-lg">
+        {why.map((w, i) => (
+          <div>
+            <p class="num" aria-hidden="true">{pad(i)}</p>
+            <h3 class="h3">{w.t}</h3>
+            <p class="muted card-body">{w.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="bg-panel">
+    <div class="container section faq">
+      <div class="faq-head">
+        <p class="eyebrow">FAQ</p>
+        <h2 class="h2">Questions owners ask us</h2>
+      </div>
+      <div class="faq-list">
+        {faqs.map((f, i) => (
+          <details open={i === 0}>
+            <summary>{f.q}<span class="plus" aria-hidden="true">+</span></summary>
+            <p class="muted">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <ContactCTA
+    title="Find out where your enquiries are slipping away."
+    body="30 minutes, free, no obligation. You'll leave with a clear picture even if you don't work with us."
+  />
+</Base>
+
+<style>
+  .hero { padding-block: clamp(56px, 9vw, 136px) clamp(48px, 6vw, 88px); }
+  .hero .eyebrow { margin-bottom: 28px; }
+  .hero-title { max-width: 1180px; font-size: clamp(42px, 7vw, 108px); }
+  .hero-sub { margin-top: 36px; }
+  .trust { margin-top: clamp(48px, 6vw, 80px); padding-top: 24px; border-top: 2px solid var(--rule); display: flex; flex-wrap: wrap; gap: 14px 48px; font-size: 15px; font-weight: 500; color: var(--body-dark); }
+  .trust li { display: flex; align-items: center; gap: 12px; }
+
+  .demo-sub { margin-top: 24px; max-width: 620px; font-size: 18px; }
+  .demo-card { display: flex; flex-wrap: wrap; gap: 40px 64px; align-items: center; border: 1px solid #3a3936; padding: clamp(24px, 3vw, 48px); }
+  .demo-video { flex: 0 1 380px; min-width: 240px; margin-inline: auto; }
+  .demo-video.wide { flex: 1 1 560px; }
+  .demo-text { flex: 1 1 340px; min-width: 0; }
+  .demo-text .eyebrow { margin-bottom: 8px; }
+  .demo-title { font-size: clamp(28px, 3vw, 40px); line-height: 1.1; margin-bottom: 12px; }
+  .demo-link { margin-top: 28px; }
+
+  .card-body { margin-top: 10px; }
+  .step-num { font-size: clamp(64px, 7vw, 104px); }
+  .step-title { margin: 20px 0 10px; font-size: 28px; }
+
+  .services { display: flex; flex-wrap: wrap; gap: 48px 64px; align-items: flex-start; }
+  .svc-list-wrap { flex: 1 1 440px; min-width: 0; }
+  .svc-heading { font-size: 15px; margin-bottom: 36px; }
+  .svc-list { border-bottom: 2px solid var(--rule); }
+  .svc-list li { border-top: 2px solid var(--rule); }
+  .svc-btn { width: 100%; min-height: 44px; display: flex; align-items: center; gap: clamp(20px, 3vw, 44px); padding: 26px 8px 26px 0; background: none; border: 0; cursor: pointer; text-align: left; font: inherit; color: var(--ink); }
+  .svc-btn:hover, .svc-btn[aria-pressed='true'] { color: #c7381f; }
+  .svc-num { font-weight: 700; font-size: 15px; width: 24px; flex: none; }
+  .svc-title { flex: 1; font-family: var(--display); font-weight: 800; font-size: clamp(22px, 2.3vw, 34px); line-height: 1.1; letter-spacing: -0.02em; }
+  .svc-mark { width: 16px; height: 16px; visibility: hidden; }
+  .svc-btn[aria-pressed='true'] .svc-mark { visibility: visible; }
+  .svc-panel { flex: 1 1 480px; min-width: 0; background: var(--panel); padding: clamp(32px, 4.5vw, 72px); }
+  .panel-num { font-size: clamp(96px, 11vw, 168px); line-height: 0.85; letter-spacing: -0.05em; }
+  .panel-title { margin-top: 28px; font-size: clamp(30px, 3.2vw, 48px); line-height: 1.05; letter-spacing: -0.03em; }
+  .panel-problem { margin-top: 20px; color: var(--red-strong); font-weight: 600; }
+  .panel-desc { margin-top: 12px; font-size: 18px; }
+  .panel-builds { border-top: 2px solid var(--rule); margin-top: 32px; padding-top: 28px; margin-bottom: 24px; }
+  .builds-label { margin-bottom: 18px; color: var(--muted); font-size: 14px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; }
+  .panel-builds ul { display: flex; flex-direction: column; gap: 16px; }
+  .panel-builds li { display: flex; align-items: center; gap: 16px; font-size: 18px; }
+  .panel-builds .square { width: 12px; height: 12px; }
+
+  .industry { display: flex; flex-direction: column; gap: 16px; padding: clamp(28px, 3.5vw, 48px); background: var(--panel); text-decoration: none; color: var(--ink); border-top: 6px solid var(--red); font-size: 18px; }
+  .industry:hover { color: var(--ink); background: #dfdcd5; }
+  .industry-title { font-size: clamp(30px, 3vw, 44px); line-height: 1.05; letter-spacing: -0.03em; }
+  .industry .link-arrow { margin-top: 12px; }
+
+  .faq { display: flex; flex-wrap: wrap; gap: 40px 72px; }
+  .faq-head { flex: 1 1 280px; }
+  .faq-head .h2 { font-size: clamp(32px, 4.2vw, 56px); }
+  .faq-list { flex: 2 1 520px; min-width: 0; border-bottom: 2px solid var(--rule); }
+  details { border-top: 2px solid var(--rule); padding: 22px 0; }
+  summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; gap: 24px; font-family: var(--display); font-weight: 700; font-size: 21px; }
+  summary::-webkit-details-marker { display: none; }
+  .plus { flex: none; display: inline-block; width: 24px; text-align: center; color: var(--red); transition: transform 0.2s; }
+  details[open] .plus { transform: rotate(45deg); }
+  details p { margin-top: 12px; }
+</style>
+
+<script>
+  // Services index: clicking a service shows its detail panel.
+  const root = document.querySelector('[data-services]');
+  if (root) {
+    const btns = root.querySelectorAll<HTMLButtonElement>('[data-svc]');
+    const panels = root.querySelectorAll<HTMLElement>('[data-panel]');
+    btns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const i = btn.dataset.svc;
+        btns.forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+        panels.forEach((p) => (p.hidden = p.dataset.panel !== i));
+        if (window.matchMedia('(max-width: 900px)').matches) {
+          root.querySelector('.svc-panel')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  }
+</script>

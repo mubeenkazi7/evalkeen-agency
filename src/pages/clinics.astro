@@ -1,0 +1,51 @@
+---
+import Base from '../layouts/Base.astro';
+import IndustryHero from '../components/IndustryHero.astro';
+import IndustryBody from '../components/IndustryBody.astro';
+import ContactCTA from '../components/ContactCTA.astro';
+import { site } from '../site.config';
+---
+<Base
+  title="AI for clinics — never miss an after-hours patient | evalkeen"
+  description="When your clinic is closed or the front desk is busy, AI answers the call or WhatsApps the caller back, books the appointment and sends reminders."
+  current="clinics"
+>
+  <IndustryHero
+    eyebrow="For clinics"
+    lead="Patients call after hours. Nobody picks up."
+    accent="By morning, they've booked elsewhere."
+    sub="When your clinic is closed or the front desk is busy, AI answers the call, or instantly WhatsApps the caller back, books the appointment and sends reminders. No patient goes unanswered."
+    builtFor={['Dental', 'Orthopaedic', 'Gynaecology', 'Physiotherapy', 'Dermatology']}
+    video={site.videos.clinic}
+    videoLabel="Clinic demo video"
+    caption="Watch: an after-hours call turned into a booking"
+  />
+  <IndustryBody
+    leaksEyebrow="Where clinics lose patients"
+    leaksTitle="Six leaks. Each one has a fix."
+    leaks={[
+      ['After-hours and missed calls', 'AI voice agent that answers and books, or missed call → instant WhatsApp reply with open slots'],
+      ['Front desk tied up on the phone at peak hours', 'Overflow calls handled by the AI agent'],
+      ['Same questions all day', 'Instant answers on timings, fees, location and treatments, on the call or on WhatsApp'],
+      ['No-shows', 'Reminders the day before and on the day, with easy rescheduling'],
+      ['Missed recalls', 'Automatic recall messages for 6-month cleanings and follow-up visits'],
+      ['Few Google reviews', 'Review request after the visit'],
+    ]}
+    stepsEyebrow="How it works for a patient"
+    stepsTitle="From a 9 pm call to a booked slot."
+    steps={[
+      'A patient calls at 9 pm. The clinic is closed.',
+      'The AI agent answers and books a slot. If the call is missed, a WhatsApp message with open slots goes out within seconds.',
+      'The patient gets a confirmation and a reminder the day before.',
+      'Anything urgent is flagged to your staff immediately.',
+      'After the visit, a review request goes out.',
+    ]}
+    calloutLabel="Safety"
+    callout="The assistant never diagnoses or gives medical advice. Urgent or clinical questions go straight to your staff."
+  />
+  <ContactCTA
+    title="See where your clinic is losing appointments."
+    body="A free 30-minute walkthrough of how patients reach you today, and where they drop off."
+    button="Book a free walkthrough"
+  />
+</Base>

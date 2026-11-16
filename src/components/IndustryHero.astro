@@ -1,0 +1,44 @@
+---
+import DemoVideo from './DemoVideo.astro';
+import { links } from '../site.config';
+interface Props {
+  eyebrow: string;
+  lead: string;
+  accent: string;
+  sub: string;
+  builtFor: string[];
+  video: { url: string; vertical?: boolean; poster?: string };
+  videoLabel: string;
+  caption: string;
+}
+const { eyebrow, lead, accent, sub, builtFor, video, videoLabel, caption } = Astro.props;
+const ext = links.bookExternal ? { target: '_blank', rel: 'noopener' } : {};
+---
+<section class="container hero">
+  <div class="text">
+    <p class="eyebrow">{eyebrow}</p>
+    <h1 class="h1 title">{lead} <span class="accent">{accent}</span></h1>
+    <p class="lede sub">{sub}</p>
+    <div class="actions">
+      <a href={links.book} class="btn btn-primary" {...ext}>Book a free walkthrough</a>
+      <a href="#demo" class="link-arrow">Watch the demo →</a>
+    </div>
+    <p class="eyebrow built">Built for</p>
+    <ul class="chips">{builtFor.map((b) => <li>{b}</li>)}</ul>
+  </div>
+  <div id="demo" class:list={['video', { wide: video.vertical === false }]}>
+    <DemoVideo url={video.url} vertical={video.vertical !== false} poster={video.poster} label={videoLabel} caption={caption} />
+  </div>
+</section>
+
+<style>
+  .hero { display: flex; flex-wrap: wrap; gap: 56px 72px; align-items: center; padding-block: clamp(48px, 7vw, 104px) clamp(56px, 7vw, 104px); }
+  .text { flex: 1 1 520px; min-width: 0; }
+  .eyebrow { margin-bottom: 28px; }
+  .title { font-size: clamp(38px, 4.8vw, 74px); line-height: 1; }
+  .sub { margin-top: 32px; }
+  .actions { margin-top: 36px; }
+  .built { margin: 48px 0 12px; color: var(--muted); }
+  .video { flex: 0 1 380px; min-width: 260px; margin-inline: auto; }
+  .video.wide { flex: 1 1 520px; }
+</style>
