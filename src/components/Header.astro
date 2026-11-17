@@ -1,6 +1,6 @@
 ---
 import { links } from '../site.config';
-interface Props { current: 'home' | 'clinics' | 'immigration' }
+interface Props { current: 'home' | 'clinics' | 'immigration' | 'legal' }
 const { current } = Astro.props;
 const onHome = current === 'home';
 const anchor = (id: string) => (onHome ? `#${id}` : `/#${id}`);

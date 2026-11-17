@@ -1,0 +1,109 @@
+---
+import LegalPage from '../components/LegalPage.astro';
+import { site } from '../site.config';
+
+const L = site.legal;
+const entity = L.entityName || '[Registered business name]';
+const address = L.address || '[Registered address]';
+const email = site.email || '[your@email]';
+---
+<LegalPage
+  title="Terms of Service"
+  description="The terms that apply when you use the evalkeen website and book a walkthrough with us."
+>
+  <p>
+    These Terms of Service ("Terms") apply to your use of this website and to walkthroughs and conversations you have
+    with {entity} ("evalkeen", "we", "us"). By using this website, you agree to these Terms. If you do not agree,
+    please do not use the website.
+  </p>
+
+  <h2>1. What this website is for</h2>
+  <p>
+    This website describes the services we offer. It is for general information only. Nothing on it is an offer to
+    provide services at a particular price or with a particular result.
+  </p>
+
+  <h2>2. Our services are covered by a separate agreement</h2>
+  <p>
+    If you decide to work with us, the scope, price, timelines, data handling and responsibilities will be set out in a
+    written proposal or agreement that we both accept. If that agreement conflicts with these Terms, the agreement
+    applies.
+  </p>
+
+  <h2>3. Free walkthroughs</h2>
+  <p>
+    Walkthroughs and initial consultations are free and carry no obligation for either side. Any suggestions we make
+    during a walkthrough are general recommendations based on what you tell us. Either of us may decline to go further.
+  </p>
+
+  <h2>4. Demos, examples and results</h2>
+  <p>
+    Demo videos, sample flows and examples on this website are for illustration. Actual results depend on your
+    business, your customers, your setup and other factors outside our control. We do not guarantee any specific
+    number of leads, bookings, revenue or other outcome.
+  </p>
+
+  <h2>5. No professional advice</h2>
+  <p>
+    We build software and automations. We do not provide medical, immigration, legal, tax or financial advice, and the
+    assistants we build are designed not to give such advice. Decisions in those areas must be made by your qualified
+    professionals.
+  </p>
+
+  <h2>6. Using this website</h2>
+  <p>You agree not to:</p>
+  <ul>
+    <li>use the website for anything unlawful or fraudulent,</li>
+    <li>try to break into, disrupt or overload the website or the systems behind it,</li>
+    <li>copy, scrape or republish our content for commercial use without permission,</li>
+    <li>pretend to be someone else when contacting us.</li>
+  </ul>
+
+  <h2>7. Intellectual property</h2>
+  <p>
+    The content of this website, including text, design, graphics, videos and the evalkeen name and logo, belongs to us
+    or our licensors. You may view and share links to it, but you may not reuse it in other ways without our written
+    permission. Ownership of anything we build for a client is set out in that client's agreement.
+  </p>
+
+  <h2>8. Third-party services and links</h2>
+  <p>
+    This website uses and links to third-party services, such as YouTube, Loom, WhatsApp, booking tools and social media.
+    We do not control them and are not responsible for their content, availability or privacy practices. Your use of
+    them is governed by their own terms.
+  </p>
+
+  <h2>9. Privacy</h2>
+  <p>
+    Our <a href="/privacy">Privacy Policy</a> explains how we handle personal data. It forms part of these Terms.
+  </p>
+
+  <h2>10. Disclaimer</h2>
+  <p>
+    The website is provided "as is" and "as available". We try to keep it accurate and online, but we do not promise
+    that it will always be available, error-free or up to date.
+  </p>
+
+  <h2>11. Limitation of liability</h2>
+  <p>
+    To the extent the law allows, we are not liable for any indirect or consequential loss, or for loss of profit,
+    revenue, data or business opportunity, arising from your use of this website or from information on it. Our
+    liability for paid services is set out in the agreement for those services. Nothing in these Terms limits liability
+    that cannot be limited by law.
+  </p>
+
+  <h2>12. Governing law</h2>
+  <p>
+    These Terms are governed by the laws of India. The courts at {L.courtsCity}, India, have exclusive jurisdiction over
+    any dispute arising from them.
+  </p>
+
+  <h2>13. Changes to these Terms</h2>
+  <p>
+    We may update these Terms from time to time. The latest version will always be on this page, with its effective
+    date at the top. Continuing to use the website after a change means you accept the updated Terms.
+  </p>
+
+  <h2>14. Contact</h2>
+  <p>{entity}, {address}<br />Email: <a href={`mailto:${email}`}>{email}</a></p>
+</LegalPage>

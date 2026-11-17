@@ -50,6 +50,14 @@ videos: {
   `poster` image (put it in `public/` and use e.g. `'/videos/clinic-poster.jpg'`), otherwise a dark frame with a play button shows.
 - Set YouTube videos to **Unlisted** (not Private) and Loom videos to **anyone with the link can view**, or they won't play on the site.
 
+## Privacy Policy and Terms of Service
+
+`/privacy` and `/terms` are linked from the footer on every page. Fill in the `legal` block in
+`src/site.config.ts` (registered business name, address, Grievance Officer name and email); until then
+those pages show `[placeholders]`. The text is written for India's DPDP Act, 2023 and DPDP Rules, 2025.
+It is a solid starting draft, not legal advice: have a lawyer review it before you sign your first client,
+especially section 5 of the Privacy Policy (data you process for clients).
+
 ## Deploy to Vercel (free)
 
 1. Push this folder to a GitHub repo.
@@ -72,10 +80,13 @@ src/
     DemoVideo.astro       ← phone-frame video player
     IndustryHero.astro    ← hero + video for industry pages
     IndustryBody.astro    ← leak table, steps, safety/compliance note
+    LegalPage.astro       ← layout for the privacy and terms pages
   pages/
     index.astro           ← homepage (copy lives at the top of the file)
     clinics.astro
     immigration.astro
+    privacy.astro         ← Privacy Policy
+    terms.astro           ← Terms of Service
 ```
 
 To add a new industry page later (e.g. business setup), copy `immigration.astro` to a new file,

@@ -35,6 +35,16 @@ export const site = {
     immigration: { url: '', vertical: true, poster: '' },
   },
 
+  // Legal pages (/privacy and /terms). Empty values show as [placeholders] on those pages.
+  legal: {
+    entityName: 'evalkeen', // registered business name, e.g. 'evalkeen' (sole proprietorship) or 'evalkeen Technologies LLP'
+    address: 'Pune, Maharashtra, India', // registered address, e.g. 'Pune, Maharashtra, India'
+    grievanceOfficerName: 'Mubeen Kazi',
+    grievanceOfficerEmail: 'support@evalkeen.com', // can be the same as the main email
+    effectiveDate: '17 November 2026',
+    courtsCity: 'Pune',
+  },
+
   // Optional: Plausible analytics domain, e.g. 'evalkeen.com'. Leave empty to disable.
   plausibleDomain: '',
 };
