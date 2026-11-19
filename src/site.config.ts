@@ -12,7 +12,7 @@ export const site = {
   // Contact
   phone: '+91 90289 19227', // shown as text and used for "Call us", e.g. '+91 98765 43210'
   whatsapp: '+91 90289 19227', // digits only with country code, e.g. '919876543210'
-  email: 'kmubeen.connect@gmail.com', // e.g. 'hello@evalkeen.com'
+  email: 'support@evalkeen.com', // e.g. 'hello@evalkeen.com'
 
   // "Book a walkthrough" buttons. A Cal.com or Google Calendar booking link.
   bookingUrl: 'https://cal.com/mubeen-kazi-b4zbtq/30min',
