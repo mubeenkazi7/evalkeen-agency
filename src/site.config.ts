@@ -31,7 +31,7 @@ export const site = {
   // vertical: false → 16:9 frame (Loom screen recordings, normal YouTube videos)
   // poster (optional): a still image shown before play, e.g. '/videos/clinic-poster.jpg' in /public.
   videos: {
-    clinic: { url: '', vertical: true, poster: '' },
+    clinic: { url: 'https://youtube.com/shorts/Uyp_H8CHE0k?feature=share', vertical: true, poster: '' },
     immigration: { url: '', vertical: true, poster: '' },
   },
 
