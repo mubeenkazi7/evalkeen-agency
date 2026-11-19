@@ -32,7 +32,7 @@ export const site = {
   // poster (optional): a still image shown before play, e.g. '/videos/clinic-poster.jpg' in /public.
   videos: {
     clinic: { url: 'https://youtube.com/shorts/Uyp_H8CHE0k?feature=share', vertical: true, poster: '' },
-    immigration: { url: '', vertical: true, poster: '' },
+    immigration: { url: 'https://youtube.com/shorts/FDcL-Yx08NU?feature=share', vertical: true, poster: '' },
   },
 
   // Legal pages (/privacy and /terms). Empty values show as [placeholders] on those pages.
