@@ -17,7 +17,7 @@ const thumb = poster || (v?.kind === 'youtube' && !vertical ? `https://i.ytimg.c
         <source src={v.src} type="video/mp4" />
       </video>
     ) : v ? (
-      <button type="button" class="screen" data-embed={v.src} data-title={label} aria-label={`Play ${label}`}>
+      <button type="button" class="screen" data-embed={v.src} data-kind={v.kind} data-title={label} aria-label={`Play ${label}`}>
         {thumb && <img src={thumb} alt="" loading="lazy" />}
         <span class="play" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24" fill="#fff"><path d="M7 4l13 8-13 8z" /></svg></span>
       </button>
@@ -59,6 +59,25 @@ const thumb = poster || (v?.kind === 'youtube' && !vertical ? `https://i.ytimg.c
       iframe.title = btn.dataset.title || 'Demo video';
       iframe.allow = 'autoplay; fullscreen; picture-in-picture; encrypted-media';
       iframe.allowFullscreen = true;
+      if (btn.dataset.kind === 'youtube') {
+        // YouTube resumes where a signed-in viewer last stopped. If playback starts
+        // past the beginning, jump back to 0:00 once.
+        let done = false;
+        const send = (msg: object) => iframe.contentWindow?.postMessage(JSON.stringify(msg), '*');
+        const onMsg = (e: MessageEvent) => {
+          if (e.source !== iframe.contentWindow || done) return;
+          let data: any;
+          try { data = typeof e.data === 'string' ? JSON.parse(e.data) : e.data; } catch { return; }
+          const t = data?.info?.currentTime;
+          if (typeof t === 'number' && t > 0) {
+            done = true;
+            window.removeEventListener('message', onMsg);
+            if (t > 1.5) send({ event: 'command', func: 'seekTo', args: [0, true] });
+          }
+        };
+        window.addEventListener('message', onMsg);
+        iframe.addEventListener('load', () => send({ event: 'listening', id: 1 }));
+      }
       btn.replaceWith(iframe);
       iframe.focus();
     });

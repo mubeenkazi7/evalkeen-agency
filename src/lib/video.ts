@@ -11,13 +11,13 @@ export function toEmbed(url: string): Embed | null {
   const yt = url.match(/(?:youtube\.com\/(?:watch\?(?:.*&)?v=|shorts\/|embed\/|live\/)|youtu\.be\/)([\w-]{11})/);
   if (yt) {
     const id = yt[1];
-    return { kind: 'youtube', id, src: `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&playsinline=1&modestbranding=1` };
+    return { kind: 'youtube', id, src: `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&start=0&rel=0&playsinline=1&modestbranding=1&enablejsapi=1` };
   }
 
   const loom = url.match(/loom\.com\/(?:share|embed)\/([a-f0-9]{32})/i);
   if (loom) {
     const id = loom[1];
-    return { kind: 'loom', id, src: `https://www.loom.com/embed/${id}?autoplay=1&hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true` };
+    return { kind: 'loom', id, src: `https://www.loom.com/embed/${id}?autoplay=1&t=0&hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true` };
   }
 
   console.warn(`[evalkeen] Unrecognised video link, ignoring: ${url}`);
